@@ -1,4 +1,4 @@
--- 1. Створення таблиці Customers
+-- 1. Customers
 CREATE TABLE Customers (
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
@@ -6,13 +6,13 @@ CREATE TABLE Customers (
     city VARCHAR(50) NOT NULL
 );
 
--- 2. Створення таблиці Categories
+-- 2. Categories
 CREATE TABLE Categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50) NOT NULL UNIQUE
 );
 
--- 3. Створення таблиці Products
+-- 3. Products
 CREATE TABLE Products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
     product_name VARCHAR(100) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Products (
     FOREIGN KEY (category) REFERENCES Categories(category_id) ON DELETE CASCADE
 );
 
--- 4. Створення таблиці Orders
+-- 4. Orders
 CREATE TABLE Orders (
     order_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE Orders (
     FOREIGN KEY (customer_id) REFERENCES Customers(customer_id) ON DELETE CASCADE
 );
 
--- 5. Створення таблиці OrderItems
+-- 5. OrderItems
 CREATE TABLE OrderItems (
     order_item_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT NOT NULL,
