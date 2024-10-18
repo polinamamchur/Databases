@@ -7,7 +7,7 @@ import os
 load_dotenv()
 
 db_config = {
-    'port': int(os.getenv('DB_PORT', 3306)),
+    'port': int(os.getenv('DB_PORT', 3307)),
     'host': os.getenv('DB_HOST', 'localhost'),
     'user': os.getenv('DB_USER', 'root'),
     'password': os.getenv('DB_PASSWORD', ''),
@@ -78,7 +78,7 @@ def insert_product_discounts(cursor, num_records):
 # Function to insert carts
 def insert_carts(cursor, num_carts):
     for _ in range(num_carts):
-        user_id = random.randint(1, 500000)  # Adjust for valid user_id range
+        user_id = random.randint(1, 500000)  
         total_price = round(random.uniform(50, 1000), 2)
         cursor.execute("""
             INSERT INTO Cart (user_id, total_price)
@@ -124,8 +124,7 @@ def insert_supplier_products(cursor, num_records):
     cursor.execute("SELECT product_id FROM Product")
     product_ids = [row[0] for row in cursor.fetchall()]
 
-    used_pairs = set()  # Set to store unique (supplier_id, product_id) pairs
-
+    used_pairs = set() 
     for _ in range(num_records):
         while True:
             supplier_id = random.choice(supplier_ids)
@@ -135,7 +134,7 @@ def insert_supplier_products(cursor, num_records):
             # Ensure the pair (supplier_id, product_id) is unique
             if pair not in used_pairs:
                 used_pairs.add(pair)
-                break  # Exit the loop once a unique pair is found
+                break  
 
         cursor.execute("""
             INSERT INTO Supplier_Product (supplier_id, product_id)
